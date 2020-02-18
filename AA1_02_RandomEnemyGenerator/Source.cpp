@@ -5,12 +5,14 @@
 
 enum class EnemyType {ZOMBIE,VAMPIRE,GHOST,WITCH};
 
+//crea una estructura amb tres varialbes de diferents tipus
 struct Enemy {
 	EnemyType type;
 	std::string name;
 	int health;
 };
 
+//funcio que compara dos enemics de diferents arrays per veure si son iguals o no
 bool equalEnemies(Enemy a, Enemy b) {
 	if (a.name == b.name && a.type == b.type) {
 		return true;
@@ -20,6 +22,7 @@ bool equalEnemies(Enemy a, Enemy b) {
 	}
 }
 
+//funcio que inicialitza les variables de struct
 Enemy createRandomEnemy() {
 	Enemy aux;
 	std::string names[5] = { "Alexandra","Roger F","Gripol","Jofresa","Yuan Two"};
@@ -27,10 +30,13 @@ Enemy createRandomEnemy() {
 
 	aux.health = (rand() % 100 + 100);
 	aux.name = names[rand() % 5];
+	//per poder crear el tipus random fem un cast dels EnemyType a int i despres
+	//per transformar el string que ens retorna a => EnemyType li fem un static_cast<EnemyTpe>
 	aux.type = static_cast <EnemyType> (rand() % (int)EnemyType:: WITCH + 1);
 	return aux; 
 }
 
+//sutilitza per 
 std::string getEnemyTypeString(EnemyType tipo) {
 	switch (tipo)
 	{
@@ -47,6 +53,7 @@ std::string getEnemyTypeString(EnemyType tipo) {
 		return "Witch";
 		break;
 	default:
+
 		break;
 	}
 }
