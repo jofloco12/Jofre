@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#define MAX_ENEMIES 5
+
 
 enum class EnemyType {ZOMBIE,VAMPIRE,GHOST,WITCH};
 
@@ -22,16 +22,13 @@ bool equalEnemies(Enemy a, Enemy b) {
 
 Enemy createRandomEnemy() {
 	Enemy aux;
-	std::string names[5];
-	names[0] = "Alexandra";
-	names[1] = "Roger F";
-	names[2] = "Gripol";
-	names[3] = "Jofresa";
-	names[4] = "Yuan Two";
-	srand(time(NULL));
+	std::string names[5] = { "Alexandra","Roger F","Gripol","Jofresa","Yuan Two"};
+	
+
 	aux.health = (rand() % 100 + 100);
 	aux.name = names[rand() % 5];
-	aux.type = EnemyType[rand() % 4];
+	aux.type = static_cast <EnemyType> (rand() % (int)EnemyType:: WITCH + 1);
+	return aux; 
 }
 
 std::string getEnemyTypeString(EnemyType tipo) {
@@ -56,18 +53,28 @@ std::string getEnemyTypeString(EnemyType tipo) {
 
 void main() {
 	
-	EnemyType enemies[MAX_ENEMIES];
+	srand(time(NULL));
+
+	const int MAX_ENEMIES = 5;
+	Enemy enemies[MAX_ENEMIES];
 	for (int i = 0; i < MAX_ENEMIES;i++) {
-		createRandomEnemy[i];
-		if (equalEnemies == true){
-			createRandomEnemy[i + 1];
-		}
-		else {
-			break;
+		enemies [i] = createRandomEnemy();
+		for (int j = 0; j <= i; j++) {
+			if (equalEnemies(enemies[i], enemies[j])) {
+				enemies [j]= createRandomEnemy();
+				enemies[i] = enemies[j];
+			}
+			else {
+				enemies[i] = enemies[j];
+			
+			}
 		}
 	}
-	createRandomEnemy;
-	equalEnemies;
 
 	//range - based for;
+	for (Enemy e : enemies) {
+		std::cout << e.name << " is a " << getEnemyTypeString(e.type) << " whose life is " << e.health << std::endl;
+	}
+	
+	
 }
