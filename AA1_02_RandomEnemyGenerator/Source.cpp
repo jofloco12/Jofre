@@ -1,14 +1,13 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-using namespace std;
 #define MAX_ENEMIES 5
 
 enum class EnemyType {ZOMBIE,VAMPIRE,GHOST,WITCH};
 
 struct Enemy {
 	EnemyType type;
-	string name;
+	std::string name;
 	int health;
 };
 
@@ -22,19 +21,51 @@ bool equalEnemies(Enemy a, Enemy b) {
 }
 
 Enemy createRandomEnemy() {
-	for (int i = 0; i < MAX_ENEMIES; i++) {
-		enemies[i].type= rand()%3 ;
-		rand();
-	}
+	Enemy aux;
+	std::string names[5];
+	names[0] = "Alexandra";
+	names[1] = "Roger F";
+	names[2] = "Gripol";
+	names[3] = "Jofresa";
+	names[4] = "Yuan Two";
+	srand(time(NULL));
+	aux.health = (rand() % 100 + 100);
+	aux.name = names[rand() % 5];
+	aux.type = EnemyType[rand() % 4];
 }
 
-string getEnemyTypeString(EnemyType) {
-
+std::string getEnemyTypeString(EnemyType tipo) {
+	switch (tipo)
+	{
+	case EnemyType::ZOMBIE:
+		return "Zombie";
+		break;
+	case EnemyType::VAMPIRE:
+		return "Vampire";
+		break;
+	case EnemyType::GHOST:
+		return "Ghost";
+		break;
+	case EnemyType::WITCH:
+		return "Witch";
+		break;
+	default:
+		break;
+	}
 }
 
 void main() {
 	
-	int enemies[MAX_ENEMIES];
+	EnemyType enemies[MAX_ENEMIES];
+	for (int i = 0; i < MAX_ENEMIES;i++) {
+		createRandomEnemy[i];
+		if (equalEnemies == true){
+			createRandomEnemy[i + 1];
+		}
+		else {
+			break;
+		}
+	}
 	createRandomEnemy;
 	equalEnemies;
 
